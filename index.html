@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html  ng-app="scrapeApp">
+<head>
+  <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+  <title>scrapeApp</title>
+</head>
+<body>
+
+<div class="container"  ng-controller="scrapeController as info">
+    <div class="box" >
+        <h1>{{info.headings.mheading}}</h1>
+        <h2>{{info.headings.subheading}}</h2>
+      
+        <!-- <button id = "btn" ng-click="loadData()">Refresh</button> -->
+          <h3>Lastest number of downloads: {{info.downloads}}</h3>
+          <h3>Number of photos: {{info.picNumber}}</h3>
+          
+          <button><h3>Time: {{info.time}}</h3></button>
+          <button><h3>Date: {{info.date}}</h3></button>
+    </div>
+</div>
+
+</body>
+   <script src="js/angular.min.js"></script>
+   <script src="js/app.js"></script>
+   <script src="js/controller/scrapeController.js"></script>
+   <script src="js/service/scrapeService.js"></script>
+</html>
