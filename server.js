@@ -21,7 +21,13 @@ request(url, function(error,response,html){
      //define the variables we want to capture
 
      var downloads, picnumber, date, hour, min, sec;
-     var jsonData = { downloads : "", picnumber : "", date: "", hour:"", min:"", sec: ""};
+     var jsonData = 
+          { downloads : "", 
+            picnumber : "", 
+            date: "", 
+            hour:"", 
+            min:"", 
+            sec: ""};
 
       $('.tab').filter(function(){
         
