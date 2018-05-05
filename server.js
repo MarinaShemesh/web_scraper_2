@@ -21,49 +21,55 @@ request(url, function(error,response,html){
      //define the variables we want to capture
 
      var downloads, picnumber, date, hour, min, sec;
-     var json = { downloads : "", picnumber : "", date: "", hour:"", min:"", sec: ""};
+     var jsonData = { downloads : "", picnumber : "", date: "", hour:"", min:"", sec: ""};
 
       $('.tab').filter(function(){
         
         var data = $(this);
 
         downloads = data.children().eq(1).text();
-        json.downloads = downloads;
+        jsonData.downloads = downloads;
 
         picnumber = data.children().eq(3).text();
-        json.picnumber = picnumber;
+        jsonData.picnumber = picnumber;
 
         })
        
        var date = timestamp('YYYY/MM/DD');//add timestamp
-       json.date = date;
+       jsonData.date = date;
 
        var hour = timestamp('HH');
        var min = timestamp('mm');
        var sec = timestamp('ss');
 
-       json.hour = hour;
-       json.min = min;
-       json.sec = sec;
-       
-      }
+       jsonData.hour = hour;
+       jsonData.min = min;
+       jsonData.sec = sec;
 
-     // fs.writeFile('output.json', JSON.stringify(json, null,4), function(err){
-     //  console.log('Done. Check the output.json file');
-     // })
-     fs.readFile('output.json', function(err, data) {
+
+      }//end of the if error
+
+  fs.readFile('output.json', function(err, data) {
     if (err) throw err;
-    var obj = JSON.parse(data);
+
+    let obj = JSON.parse(data);
     if (obj.downloads != downloads) {
-        console.log('The number has gone up');
-        fs.writeFile('output.json', JSON.stringify(json, null, 4), function(err) {
-            console.log('Done. Your downloads are now:' + downloads);
-        });
-      }
-   })
+
+       let a = downloads;
+       let b = obj.downloads;
+     
+       console.log('downloads:', a);
+       console.log('obj.downloads:', b);
+           
+
+        fs.writeFile('output.json', JSON.stringify(jsonData, null, 4), function(err) {
+            console.log('Done. The downloads are:', a);
+            
+
+        });//end of write file
+      }//end of if 
+   })//end of the read file
 
   })//end of scrape request
-
-
 
 
